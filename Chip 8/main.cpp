@@ -22,7 +22,12 @@ public:
 
 	bool OnUserUpdate(float fElapsedTime) override
 	{
-		chip8.emulateCycle(); // TODO: limit number of cicles to what the CHIP-8 would do
+		/*
+		 * The chip 8 has a ~500Hz CPU and has a refresh rate of 60Hz
+		 * 500Hz / 60Hz = 8.33 cycles/frame --> 8 cycles/frame
+		*/
+		for (int cycles = 0; cycles <= 8; cycles++)
+			chip8.emulateCycle();
 
 		// If the draw flag is set, update the screen
 		if (chip8.drawFlag)
@@ -37,6 +42,7 @@ public:
 				}
 			chip8.drawFlag = false; // The screen has been updated, disable the flag
 		}
+		std::this_thread::sleep_for(std::chrono::milliseconds(16)); // Sleep thread for 16ms (limit to ~60fps)
 		return true;
 	}
 
