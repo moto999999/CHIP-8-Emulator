@@ -69,7 +69,10 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>C:\Users\juanr\OneDrive - Universidad Politécnica de Madrid\Documents\Visual Studio 2019\SDL2_image-2.0.5\include;C:\Users\juanr\OneDrive - Universidad Politécnica de Madrid\Documents\Visual Studio 2019\SDL2-2.0.20\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\juanr\OneDrive - Universidad Politécnica de Madrid\Documents\Visual Studio 2019\SDL2_image-2.0.5\lib\x64;C:\Users\juanr\OneDrive - Universidad Politécnica de Madrid\Documents\Visual Studio 2019\SDL2-2.0.20\lib\x64;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -90,6 +93,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -128,7 +132,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Chip8.h" />
-    <ClInclude Include="olcPixelGameEngine.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,8 +1,8 @@
 # CHIP-8 emulator
- A CHIP-8 emulator written in C++
+ A CHIP-8 emulator written in C++ using SDL2.
 
-## Engine
-The emulator uses the [olcPixelGameEngine](https://github.com/OneLoneCoder/olcPixelGameEngine)
+## Dependencies
+- SDL2 2.0.20
 
 ## Resources
 Resources used when writing this emulator:
