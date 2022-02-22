@@ -226,7 +226,7 @@ void Chip8::emulateCycle()
 	}
 
 	case 0x9000: // 9XY0: Skips the next instruction if VX doesn't equal VY. (Usually the next instruction is a jump to skip a code block)
-		if (V[regX] != V[regX])
+		if (V[regX] != V[regY])
 			pc += 4;
 		else
 			pc += 2;
