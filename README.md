@@ -1,6 +1,24 @@
 # CHIP-8 emulator
  A CHIP-8 emulator written in C++ using SDL2.
 
+## Controls
+### Keypad
+
+|   |   |   |   |
+|---|---|---|---|
+| 1 | 2 | 3 | C |
+| 4 | 5 | 6 | D |
+| 7 | 8 | 9 | E |
+| A | 0 | B | F |
+
+### Keyboard
+|   |   |   |   |
+|---|---|---|---|
+| 1 | 2 | 3 | 4 |
+| Q | W | E | R |
+| A | S | D | F |
+| Z | X | C | V |
+
 ## Dependencies
 - SDL2 2.0.20
 
