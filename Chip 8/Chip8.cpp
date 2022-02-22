@@ -140,7 +140,7 @@ void Chip8::emulateCycle()
 		break;
 
 	case 0x5000: // 0x5XY0: Skips the next instruction if VX equals VY. (Usually the next instruction is a jump to skip a code block)
-		if (V[regX] == V[regX])
+		if (V[regX] == V[regY])
 			pc += 4;
 		else
 			pc += 2;
