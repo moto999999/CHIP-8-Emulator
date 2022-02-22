@@ -351,14 +351,22 @@ void Chip8::emulateCycle()
 		case 0x0055: // FX55: Store the values of registers V0 to VX inclusive in memory starting at address I. I is set to I + X + 1 after operation
 			for (int i = 0; i <= regX; i++)
 				memory[I + i] = V[i];
-			I += regX + 1;
+			/*
+			* Modern interpreters (starting with CHIP48 and SUPER-CHIP in the early 90s) used a temporary variable for indexing,
+			* so when the instruction was finished, I would still hold the same value as it did before.
+			*/
+			//I += regX + 1;
 			pc += 2;
 			break;
 
 		case 0x0065: // FX65: Fill registers V0 to VX inclusive with the values stored in memory starting at address I. I is set to I + X + 1 after operation
 			for (int i = 0; i <= regX; i++)
 				V[i] = memory[I + i];
-			I += regX + 1;
+			/*
+			* Modern interpreters (starting with CHIP48 and SUPER-CHIP in the early 90s) used a temporary variable for indexing,
+			* so when the instruction was finished, I would still hold the same value as it did before.
+			*/
+			//I += regX + 1;
 			pc += 2;
 			break;
 
