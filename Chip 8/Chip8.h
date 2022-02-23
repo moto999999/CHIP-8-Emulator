@@ -15,6 +15,8 @@ class Chip8
 public:
 	bool drawFlag = false; // Flag to see if it's needed to draw on the screen
 
+	int playSound = 0;
+
 	unsigned short opcode; // Operation Code -- 2 bytes
 
 	/*

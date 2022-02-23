@@ -386,7 +386,9 @@ void Chip8::emulateCycle()
 	if (sound_timer > 0)
 	{
 		if (sound_timer != 0)
-			std::cout << "BEEP!\n"; // TODO: add sound support
+			playSound++;
 		sound_timer--;
 	}
+	else
+		playSound = 0;
 }

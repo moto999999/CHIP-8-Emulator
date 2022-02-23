@@ -1,5 +1,6 @@
 //Using SDL, SDL_image, standard IO, math, and strings
 #include <SDL.h>
+#include <SDL_mixer.h>
 #include <stdio.h>
 #include <string>
 #include <cmath>
@@ -53,6 +54,13 @@ int main(int argc, char* args[])
 		SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0xFF);
 		SDL_RenderClear(renderer);
 
+		//Load music
+		Mix_Chunk* sinWave = Mix_LoadWAV("../assets/sine_wave_440.wav");
+		if (sinWave == NULL)
+		{
+			std::cout << "Failed to load beep sound! SDL_mixer Error: " << Mix_GetError() << std::endl;
+		}
+
 		if (chip8.loadProgram("../roms/PONG")) // TODO: better rom selection
 		{
 			//While application is running
@@ -95,6 +103,15 @@ int main(int argc, char* args[])
 				}
 				//Update screen
 				SDL_RenderPresent(renderer);
+
+				// Play sound
+				for (size_t i = 0; i < chip8.playSound; i++)
+				{
+					if (sinWave == NULL)
+						std::cout << "BEEP!\n"; // Print to console if no sound loaded
+					else
+						Mix_PlayChannel(-1, sinWave, 0);
+				}
 			}
 		}
 	}
@@ -118,27 +135,35 @@ bool init(SDL_Window** window, SDL_Renderer** renderer)
 	}
 	else
 	{
-		//Set texture filtering to linear
-		if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
+		//Initialize SDL_mixer
+		if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
 		{
-			printf("Warning: Linear texture filtering not enabled!");
-		}
-
-		//Create window
-		*window = SDL_CreateWindow("CHIP-8 emulator", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-		if (*window == NULL)
-		{
-			printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
+			printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
 			success = false;
 		}
-		else
-		{
-			//Create renderer for window
-			*renderer = SDL_CreateRenderer(*window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-			if (renderer == NULL)
+		else {
+			//Set texture filtering to linear
+			if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
 			{
-				printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
+				printf("Warning: Linear texture filtering not enabled!");
+			}
+
+			//Create window
+			*window = SDL_CreateWindow("CHIP-8 emulator", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+			if (*window == NULL)
+			{
+				printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
 				success = false;
+			}
+			else
+			{
+				//Create renderer for window
+				*renderer = SDL_CreateRenderer(*window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+				if (renderer == NULL)
+				{
+					printf("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
+					success = false;
+				}
 			}
 		}
 	}

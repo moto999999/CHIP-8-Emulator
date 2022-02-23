@@ -70,8 +70,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\juanr\OneDrive - Universidad Politécnica de Madrid\Documents\Visual Studio 2019\SDL2_image-2.0.5\include;C:\Users\juanr\OneDrive - Universidad Politécnica de Madrid\Documents\Visual Studio 2019\SDL2-2.0.20\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\juanr\OneDrive - Universidad Politécnica de Madrid\Documents\Visual Studio 2019\SDL2_image-2.0.5\lib\x64;C:\Users\juanr\OneDrive - Universidad Politécnica de Madrid\Documents\Visual Studio 2019\SDL2-2.0.20\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\juanr\OneDrive - Universidad Politécnica de Madrid\Documents\Visual Studio 2019\SDL2_mixer-2.0.4\include;C:\Users\juanr\OneDrive - Universidad Politécnica de Madrid\Documents\Visual Studio 2019\SDL2_image-2.0.5\include;C:\Users\juanr\OneDrive - Universidad Politécnica de Madrid\Documents\Visual Studio 2019\SDL2-2.0.20\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\juanr\OneDrive - Universidad Politécnica de Madrid\Documents\Visual Studio 2019\SDL2_mixer-2.0.4\lib\x64;C:\Users\juanr\OneDrive - Universidad Politécnica de Madrid\Documents\Visual Studio 2019\SDL2_image-2.0.5\lib\x64;C:\Users\juanr\OneDrive - Universidad Politécnica de Madrid\Documents\Visual Studio 2019\SDL2-2.0.20\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -93,7 +93,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
